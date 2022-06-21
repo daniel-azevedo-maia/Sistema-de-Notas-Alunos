@@ -1,0 +1,36 @@
+--- Dados do aluno ---
+	Nome: Daniel Azevedo de Oliveira Maia
+	Sexo: Masculino
+	CPF: 095.985.324-37
+	Matrícula: 12345
+	Série: 2º ano
+	Turno: Tarde
+	Turma: C
+
+--- Boletim do aluno ---
+
+NOTAS:
+
+	Matemática: 
+	10.0
+	9.4
+	9.6
+	9.4
+
+	Física: 
+	6.7
+	9.0
+	5.6
+	7.1
+
+	Geografia: 
+	10.0
+	10.0
+	10.0
+	10.0
+
+	Química: 
+	9.6
+	9.7
+	10.0
+	9.5
