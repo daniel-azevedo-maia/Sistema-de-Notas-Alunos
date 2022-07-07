@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.awt.event.ActionEvent;
+import javax.swing.ScrollPaneConstants;
 
 public class BoletimFrame extends JInternalFrame {
 	private JTable tabela;
@@ -43,15 +44,20 @@ public class BoletimFrame extends JInternalFrame {
 	 */
 	@SuppressWarnings("serial")
 	public BoletimFrame(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+		setTitle("Boletim do Aluno");
 		setBounds(100, 100, 618, 352);
+		
+		setClosable(true);
+		setMaximizable(true);
+		setIconifiable(true);
 
 		JPanel Boletim = new JPanel();
 		getContentPane().add(Boletim, BorderLayout.CENTER);
 		Boletim.setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("Boletim de " + aln.getNome() + " - Matrícula " + aln.getMatricula());
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
-		lblNewLabel.setBounds(10, 29, 495, 14);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		lblNewLabel.setBounds(10, 29, 582, 14);
 		Boletim.add(lblNewLabel);
 
 		JSeparator separator = new JSeparator();
@@ -59,6 +65,7 @@ public class BoletimFrame extends JInternalFrame {
 		Boletim.add(separator);
 
 		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		scrollPane.setBounds(10, 94, 591, 129);
 		Boletim.add(scrollPane);
 
@@ -129,7 +136,7 @@ public class BoletimFrame extends JInternalFrame {
 
 			}
 		});
-		gerarRelatorio.setBounds(10, 257, 286, 23);
+		gerarRelatorio.setBounds(10, 288, 286, 23);
 		Boletim.add(gerarRelatorio);
 		
 		JButton btnNewButton = new JButton("Voltar ao menu");
@@ -139,7 +146,7 @@ public class BoletimFrame extends JInternalFrame {
 				Boletim.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(306, 257, 153, 23);
+		btnNewButton.setBounds(306, 288, 153, 23);
 		Boletim.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("Sair");
@@ -148,8 +155,26 @@ public class BoletimFrame extends JInternalFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_1.setBounds(469, 257, 123, 23);
+		btnNewButton_1.setBounds(469, 288, 123, 23);
 		Boletim.add(btnNewButton_1);
+		
+		JLabel situacaoFinal = new JLabel("M\u00E9dia final:");
+		situacaoFinal.setFont(new Font("Tahoma", Font.BOLD, 12));
+		situacaoFinal.setBounds(20, 234, 95, 14);
+		Boletim.add(situacaoFinal);
+		
+		JLabel mediaFinal = new JLabel("New label");
+		mediaFinal.setBounds(129, 234, 56, 16);
+		Boletim.add(mediaFinal);
+		
+		JLabel lblSituaoFinal = new JLabel("Situa\u00E7\u00E3o final:");
+		lblSituaoFinal.setFont(new Font("Tahoma", Font.BOLD, 12));
+		lblSituaoFinal.setBounds(20, 259, 95, 14);
+		Boletim.add(lblSituaoFinal);
+		
+		JLabel finalSituacao = new JLabel("New label");
+		finalSituacao.setBounds(129, 259, 56, 18);
+		Boletim.add(finalSituacao);
 
 		DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
 		modelo.setNumRows(0);

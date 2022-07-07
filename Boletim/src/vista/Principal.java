@@ -7,6 +7,8 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import javax.swing.JButton;
@@ -47,6 +49,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setTitle("Cadastro de Alunos - Por: Daniel Azevedo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 685, 465);
 		contentPane = new JPanel();
@@ -111,8 +114,14 @@ public class Principal extends JFrame {
 		JButton cadastrar = new JButton("Cadastrar novo aluno");
 		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				Aluno aln = new Aluno();
+				Disciplina disc = new Disciplina();
+				Boletim boletim = new Boletim();
+				List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
-				Inserir finserir = new Inserir();
+				Inserir finserir = new Inserir(aln, disc, boletim, disciplinas);
+				
 				desktop.add(finserir);
 				finserir.setVisible(true);
 

@@ -13,6 +13,8 @@ public class Boletim {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
+	
+	//public 
 
 
 }

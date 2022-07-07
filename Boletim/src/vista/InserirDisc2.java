@@ -49,6 +49,7 @@ public class InserirDisc2 extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public InserirDisc2(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+		setTitle("Disciplinas");
 
 		setBounds(100, 100, 530, 352);
 

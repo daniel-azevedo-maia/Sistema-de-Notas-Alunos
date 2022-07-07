@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -25,7 +26,6 @@ public class Inserir extends JInternalFrame {
 	private JTextField nome;
 	private JTextField cpf;
 	private JTextField matricula;
-	
 
 	/**
 	 * Launch the application.
@@ -34,7 +34,7 @@ public class Inserir extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Inserir frame = new Inserir();
+					Inserir frame = new Inserir(null, null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,14 +46,16 @@ public class Inserir extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Inserir() {
+	public Inserir(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+		setTitle("Dados Pessoais e Escolares");
 		setBounds(100, 100, 561, 371);
 
 		setClosable(true);
 		setMaximizable(true);
 		setIconifiable(true);
-		
+
 		JPanel inserir = new JPanel();
+
 		inserir.setBackground(SystemColor.control);
 		inserir.setBorder(
 				new TitledBorder(null, "Cadastro de novo aluno", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -98,13 +100,13 @@ public class Inserir extends JInternalFrame {
 		turma.setFont(new Font("Microsoft JhengHei UI", Font.BOLD, 13));
 		turma.setBounds(30, 244, 71, 22);
 		inserir.add(turma);
-		
-		//--------------------------------------------------------
+
+		// --------------------------------------------------------
 		JRadioButton primeiroAno = new JRadioButton("1\u00BA ano");
 		primeiroAno.setSelected(true);
 		primeiroAno.setBounds(107, 187, 64, 23);
 		inserir.add(primeiroAno);
-		
+
 		JRadioButton segundoAno = new JRadioButton("2\u00BA ano");
 		segundoAno.setBounds(176, 187, 64, 23);
 		inserir.add(segundoAno);
@@ -118,8 +120,8 @@ public class Inserir extends JInternalFrame {
 		botaoSerie.add(segundoAno);
 		botaoSerie.add(terceiroAno);
 
-		//--------------------------------------------------------
-		
+		// --------------------------------------------------------
+
 		JRadioButton manha = new JRadioButton("Manh\u00E3");
 		manha.setSelected(true);
 		manha.setBounds(107, 216, 71, 23);
@@ -128,12 +130,12 @@ public class Inserir extends JInternalFrame {
 		JRadioButton tarde = new JRadioButton("Tarde");
 		tarde.setBounds(176, 216, 64, 23);
 		inserir.add(tarde);
-		
+
 		ButtonGroup botaoTurno = new ButtonGroup();
 		botaoTurno.add(manha);
 		botaoTurno.add(tarde);
-		
-		//--------------------------------------------------------
+
+		// --------------------------------------------------------
 
 		JRadioButton a = new JRadioButton("A");
 		a.setSelected(true);
@@ -147,13 +149,13 @@ public class Inserir extends JInternalFrame {
 		JRadioButton c = new JRadioButton("C");
 		c.setBounds(242, 243, 33, 23);
 		inserir.add(c);
-		
+
 		ButtonGroup botaoTurma = new ButtonGroup();
 		botaoTurma.add(a);
 		botaoTurma.add(b);
 		botaoTurma.add(c);
-		
-		//--------------------------------------------------------
+
+		// --------------------------------------------------------
 
 		JRadioButton masculino = new JRadioButton("M");
 		masculino.setSelected(true);
@@ -167,8 +169,8 @@ public class Inserir extends JInternalFrame {
 		ButtonGroup botaoSexo = new ButtonGroup();
 		botaoSexo.add(masculino);
 		botaoSexo.add(feminino);
-		
-		//--------------------------------------------------------
+
+		// --------------------------------------------------------
 
 		nome = new JTextField();
 		nome.setBounds(107, 106, 173, 20);
@@ -184,7 +186,7 @@ public class Inserir extends JInternalFrame {
 		matricula.setColumns(10);
 		matricula.setBounds(107, 160, 334, 20);
 		inserir.add(matricula);
-		
+
 		JButton cadastrar = new JButton("Cadastrar");
 		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -192,14 +194,14 @@ public class Inserir extends JInternalFrame {
 				String nomeAluno = nome.getText();
 				String cpfAluno = cpf.getText();
 				String matriculaAluno = matricula.getText();
-				
+
 				String sexo;
 				if (masculino.isSelected()) {
 					sexo = "Masculino";
 				} else {
 					sexo = "Feminino";
 				}
-				
+
 				String serie;
 				if (primeiroAno.isSelected()) {
 					serie = "1º ano";
@@ -208,14 +210,14 @@ public class Inserir extends JInternalFrame {
 				} else {
 					serie = "3º ano";
 				}
-				
+
 				String turno;
 				if (manha.isSelected()) {
 					turno = "Manhã";
 				} else {
 					turno = "Tarde";
 				}
-				
+
 				String turma;
 				if (a.isSelected()) {
 					turma = "A";
@@ -224,18 +226,15 @@ public class Inserir extends JInternalFrame {
 				} else {
 					turma = "C";
 				}
-				
-				/*JOptionPane.showMessageDialog(null, "Aluno cadastrado! Nome: " + nomeAluno + "\nCPF: " + cpfAluno + "\nMatrícula: " + 
-				matriculaAluno + "\nSexo: " + sexo + "\nSérie: " + serie + "\nTurno: " + turno + "\nTurma: " + turma);
-				*/
-				
+
+				/*
+				 * JOptionPane.showMessageDialog(null, "Aluno cadastrado! Nome: " + nomeAluno +
+				 * "\nCPF: " + cpfAluno + "\nMatrícula: " + matriculaAluno + "\nSexo: " + sexo +
+				 * "\nSérie: " + serie + "\nTurno: " + turno + "\nTurma: " + turma);
+				 */
+
 				JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
-				
-				Aluno aln = new Aluno();
-				Disciplina disc = new Disciplina();
-				Boletim boletim = new Boletim();
-				List<Disciplina> disciplinas = new ArrayList<Disciplina>();
-				
+
 				aln.setNome(nomeAluno);
 				aln.setCpf(cpfAluno);
 				aln.setMatricula(matriculaAluno);
@@ -243,18 +242,17 @@ public class Inserir extends JInternalFrame {
 				aln.setSerie(serie);
 				aln.setTurno(turno);
 				aln.setTurma(turma);
-				
-				//OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
+
+				// OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
 				InserirDisc finserirdisc = new InserirDisc(aln, disc, boletim, disciplinas);
 
-			    getParent().add(finserirdisc);
-			    finserirdisc.setVisible(true);
-			    dispose();
-			    
-			    finserirdisc.setSize(550, 400); //define o seu tamanho
-			    finserirdisc.setLocation(55, 5); //define onde estará na tela
-			    
-				
+				getParent().add(finserirdisc);
+				finserirdisc.setVisible(true);
+				dispose();
+
+				finserirdisc.setSize(550, 400); // define o seu tamanho
+				finserirdisc.setLocation(55, 5); // define onde estará na tela
+
 			}
 		});
 		cadastrar.setBounds(29, 291, 114, 31);
@@ -263,7 +261,7 @@ public class Inserir extends JInternalFrame {
 		JButton limpar = new JButton("Limpar");
 		limpar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				nome.setText("");
 				cpf.setText("");
 				matricula.setText("");
@@ -271,7 +269,7 @@ public class Inserir extends JInternalFrame {
 				primeiroAno.setSelected(true);
 				manha.setSelected(true);
 				a.setSelected(true);
-				
+
 			}
 		});
 		limpar.setBounds(153, 291, 100, 31);
@@ -291,7 +289,6 @@ public class Inserir extends JInternalFrame {
 		sexo.setBounds(290, 104, 44, 22);
 		inserir.add(sexo);
 
-		
-
 	}
+
 }
