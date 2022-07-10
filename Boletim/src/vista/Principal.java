@@ -30,9 +30,9 @@ public class Principal extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-		
+
 		Locale.setDefault(Locale.US);
-		
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -75,11 +75,26 @@ public class Principal extends JFrame {
 		lblNewLabel.setBounds(160, 372, 357, 14);
 		desktop.add(lblNewLabel);
 
-		JButton listar = new JButton("Alunos cadastrados");
+		JButton listar = new JButton("Consultar notas");
+		listar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				Consultar fconsultar = new Consultar();
+
+				desktop.add(fconsultar);
+			
+				
+				fconsultar.setVisible(true);
+
+				fconsultar.setSize(658, 416); // define o seu tamanho
+				fconsultar.setLocation(0, 0); // define onde estará na tela
+
+			}
+		});
 		listar.setForeground(new Color(0, 0, 139));
 		listar.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		listar.setBackground(UIManager.getColor("Button.focus"));
-		listar.setBounds(239, 170, 197, 57);
+		listar.setBounds(239, 135, 197, 27);
 		desktop.add(listar);
 
 		JButton sair = new JButton("Sair");
@@ -96,44 +111,60 @@ public class Principal extends JFrame {
 		desktop.add(sair);
 
 		JButton sobre = new JButton("Sobre");
+		
 		sobre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Desenvolvido por: Daniel Azevedo de O. Maia\nGitHub: https://github.com/daniel-azevedo-maia\nLinkedIn: https://www.linkedin.com/in/daniel-azevedo-0a9952221/");
+				JOptionPane.showMessageDialog(null,
+						"Desenvolvido por: Daniel Azevedo de O. Maia\nGitHub: https://github.com/daniel-azevedo-maia\nLinkedIn: https://www.linkedin.com/in/daniel-azevedo-0a9952221/");
 			}
 		});
 		sobre.setForeground(new Color(0, 0, 139));
 		sobre.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		sobre.setBackground(UIManager.getColor("Button.focus"));
-		sobre.setBounds(239, 238, 197, 37);
+		sobre.setBounds(239, 248, 197, 27);
 		desktop.add(sobre);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(116, 347, 460, 2);
 		desktop.add(separator);
 
-		JButton cadastrar = new JButton("Cadastrar novo aluno");
+		JButton cadastrar = new JButton("Cadastrar novo");
 		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
+
 				Aluno aln = new Aluno();
 				Disciplina disc = new Disciplina();
 				Boletim boletim = new Boletim();
 				List<Disciplina> disciplinas = new ArrayList<Disciplina>();
 
 				Inserir finserir = new Inserir(aln, disc, boletim, disciplinas);
-				
+
 				desktop.add(finserir);
 				finserir.setVisible(true);
 
-				finserir.setSize(550, 400); //define o seu tamanho
-				finserir.setLocation(55, 5); //define onde estará na tela
+				finserir.setSize(550, 400); // define o seu tamanho
+				finserir.setLocation(55, 5); // define onde estará na tela
 
 			}
 		});
 		cadastrar.setForeground(new Color(0, 0, 139));
 		cadastrar.setBackground(UIManager.getColor("Button.focus"));
 		cadastrar.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		cadastrar.setBounds(239, 97, 197, 62);
+		cadastrar.setBounds(239, 97, 197, 27);
 		desktop.add(cadastrar);
+		
+		JButton btnAlterarDadosDo = new JButton("Atualizar dados");
+		btnAlterarDadosDo.setForeground(new Color(0, 0, 139));
+		btnAlterarDadosDo.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		btnAlterarDadosDo.setBackground(Color.BLACK);
+		btnAlterarDadosDo.setBounds(239, 173, 197, 27);
+		desktop.add(btnAlterarDadosDo);
+		
+		JButton btnRemoverDados = new JButton("Remover dados");
+		btnRemoverDados.setForeground(new Color(0, 0, 139));
+		btnRemoverDados.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
+		btnRemoverDados.setBackground(Color.BLACK);
+		btnRemoverDados.setBounds(239, 210, 197, 27);
+		desktop.add(btnRemoverDados);
 	}
 }

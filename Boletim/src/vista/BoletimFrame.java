@@ -2,23 +2,27 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-import java.util.List;
-
-import javax.swing.JInternalFrame;
-import javax.swing.JPanel;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JLabel;
 import java.awt.Font;
-import javax.swing.JSeparator;
-import javax.swing.JButton;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.awt.event.ActionEvent;
+import java.util.List;
+
+import javax.swing.JButton;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
+import javax.swing.table.DefaultTableModel;
+
+import persistencia.Conexão;
+import persistencia.JDBCAluno;
 
 public class BoletimFrame extends JInternalFrame {
 	private JTable tabela;
@@ -46,7 +50,7 @@ public class BoletimFrame extends JInternalFrame {
 	public BoletimFrame(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
 		setTitle("Boletim do Aluno");
 		setBounds(100, 100, 618, 352);
-		
+
 		setClosable(true);
 		setMaximizable(true);
 		setIconifiable(true);
@@ -133,12 +137,14 @@ public class BoletimFrame extends JInternalFrame {
 					System.out.println("Ocorreu um erro ao escrever no arquivo.");
 					ex.printStackTrace();
 				}
+				
+				JOptionPane.showMessageDialog(null, "Informações do aluno registradas em arquivo. Confira o arquivo gerado na mesma pasta deste programa.");
 
 			}
 		});
 		gerarRelatorio.setBounds(10, 288, 286, 23);
 		Boletim.add(gerarRelatorio);
-		
+
 		JButton btnNewButton = new JButton("Voltar ao menu");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -148,7 +154,7 @@ public class BoletimFrame extends JInternalFrame {
 		});
 		btnNewButton.setBounds(306, 288, 153, 23);
 		Boletim.add(btnNewButton);
-		
+
 		JButton btnNewButton_1 = new JButton("Sair");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -157,24 +163,28 @@ public class BoletimFrame extends JInternalFrame {
 		});
 		btnNewButton_1.setBounds(469, 288, 123, 23);
 		Boletim.add(btnNewButton_1);
-		
-		JLabel situacaoFinal = new JLabel("M\u00E9dia final:");
-		situacaoFinal.setFont(new Font("Tahoma", Font.BOLD, 12));
-		situacaoFinal.setBounds(20, 234, 95, 14);
-		Boletim.add(situacaoFinal);
-		
-		JLabel mediaFinal = new JLabel("New label");
-		mediaFinal.setBounds(129, 234, 56, 16);
-		Boletim.add(mediaFinal);
-		
-		JLabel lblSituaoFinal = new JLabel("Situa\u00E7\u00E3o final:");
-		lblSituaoFinal.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lblSituaoFinal.setBounds(20, 259, 95, 14);
-		Boletim.add(lblSituaoFinal);
-		
-		JLabel finalSituacao = new JLabel("New label");
-		finalSituacao.setBounds(129, 259, 56, 18);
-		Boletim.add(finalSituacao);
+
+		JButton btnNewButton_2 = new JButton("Registrar no banco de dados");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				// Ao clicar em REGISTRAR NO BANCO DE DADOS, SERÁ FEITO ISSO:
+
+				// Persistindo no banco de dados:
+				Conexão fábrica = new Conexão();
+				JDBCAluno gerente = new JDBCAluno(fábrica.abrirConexão());
+
+				// Realizando a inserção:
+				gerente.inserirAluno(aln);
+				
+				JOptionPane.showMessageDialog(null, "Aluno inserido no banco de dados com sucesso!");
+
+				fábrica.fecharConexão();
+
+			}
+		});
+		btnNewButton_2.setBounds(162, 234, 286, 42);
+		Boletim.add(btnNewButton_2);
 
 		DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
 		modelo.setNumRows(0);

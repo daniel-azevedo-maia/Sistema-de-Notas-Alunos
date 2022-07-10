@@ -1,0 +1,36 @@
+--- Dados do aluno ---
+	Nome: Pedro Álvares Cabral
+	Sexo: Masculino
+	CPF: 12345678987
+	Matrícula: 11111
+	Série: 1º ano
+	Turno: Tarde
+	Turma: B
+
+--- Boletim do aluno ---
+
+NOTAS:
+
+	História: 
+	10.0
+	9.0
+	10.0
+	9.0
+
+	Física: 
+	8.5
+	9.2
+	9.1
+	9.4
+
+	História: 
+	10.0
+	10.0
+	10.0
+	10.0
+
+	Geografia: 
+	10.0
+	10.0
+	10.0
+	10.0

@@ -190,6 +190,7 @@ public class Inserir extends JInternalFrame {
 		JButton cadastrar = new JButton("Cadastrar");
 		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+	
 
 				String nomeAluno = nome.getText();
 				String cpfAluno = cpf.getText();
