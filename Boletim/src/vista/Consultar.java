@@ -82,9 +82,13 @@ public class Consultar extends JInternalFrame {
 				fábrica.fecharConexão();
 
 				// Mostrando na tabela:
+				
+				
 				DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
-				modelo.setNumRows(0);
 
+				modelo.setNumRows(0);
+				
+	
 				campoAluno.setText(dadosAluno.get(0).getNome());
 
 				for (DadosAlunoQuery d : dadosAluno) {
@@ -99,10 +103,11 @@ public class Consultar extends JInternalFrame {
 		getContentPane().add(btnNewButton);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 143, 625, 100);
+		scrollPane.setBounds(10, 143, 625, 154);
 		getContentPane().add(scrollPane);
 
 		tabela = new JTable();
+
 		scrollPane.setViewportView(tabela);
 		tabela.setModel(new DefaultTableModel(new Object[][] {}, new String[] { "Disciplina", "Nota 1", "Nota 2",
 				"Nota 3", "Nota 4", "M\u00E9dia", "Situa\u00E7\u00E3o" }) {

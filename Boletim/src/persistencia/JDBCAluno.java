@@ -28,7 +28,7 @@ public class JDBCAluno {
 
 		try {
 
-			for (int i = 0; i < 4; i++) {
+			for (int i = 0; i < aln.getBoletim().getDisciplinas().size(); i++) {
 
 				String sql = "insert into aluno (Aluno, Matrícula, Disciplina, nota1, nota2, nota3, nota4, Média, Situação) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 				ps = this.conexão.prepareStatement(sql);

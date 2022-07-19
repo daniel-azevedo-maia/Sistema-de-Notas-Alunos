@@ -190,69 +190,75 @@ public class Inserir extends JInternalFrame {
 		JButton cadastrar = new JButton("Cadastrar");
 		cadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-	
 
-				String nomeAluno = nome.getText();
-				String cpfAluno = cpf.getText();
-				String matriculaAluno = matricula.getText();
-
-				String sexo;
-				if (masculino.isSelected()) {
-					sexo = "Masculino";
+				if (nome.getText().equals("") || cpf.getText().equals("") || matricula.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos para prosseguir!");
+				} else if (cpf.getText().contains(".") || cpf.getText().contains("-")) {
+					JOptionPane.showMessageDialog(null, "Preencha apenas números no CPF!");
 				} else {
-					sexo = "Feminino";
+				
+					String nomeAluno = nome.getText();
+					String cpfAluno = cpf.getText();
+					String matriculaAluno = matricula.getText();
+
+					String sexo;
+					if (masculino.isSelected()) {
+						sexo = "Masculino";
+					} else {
+						sexo = "Feminino";
+					}
+
+					String serie;
+					if (primeiroAno.isSelected()) {
+						serie = "1º ano";
+					} else if (segundoAno.isSelected()) {
+						serie = "2º ano";
+					} else {
+						serie = "3º ano";
+					}
+
+					String turno;
+					if (manha.isSelected()) {
+						turno = "Manhã";
+					} else {
+						turno = "Tarde";
+					}
+
+					String turma;
+					if (a.isSelected()) {
+						turma = "A";
+					} else if (b.isSelected()) {
+						turma = "B";
+					} else {
+						turma = "C";
+					}
+
+					/*
+					 * JOptionPane.showMessageDialog(null, "Aluno cadastrado! Nome: " + nomeAluno +
+					 * "\nCPF: " + cpfAluno + "\nMatrícula: " + matriculaAluno + "\nSexo: " + sexo +
+					 * "\nSérie: " + serie + "\nTurno: " + turno + "\nTurma: " + turma);
+					 */
+
+					JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
+
+					aln.setNome(nomeAluno);
+					aln.setCpf(cpfAluno);
+					aln.setMatricula(matriculaAluno);
+					aln.setSexo(sexo);
+					aln.setSerie(serie);
+					aln.setTurno(turno);
+					aln.setTurma(turma);
+
+					// OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
+					InserirDisc finserirdisc = new InserirDisc(aln, disc, boletim);
+
+					getParent().add(finserirdisc);
+					finserirdisc.setVisible(true);
+					dispose();
+
+					finserirdisc.setSize(550, 400); // define o seu tamanho
+					finserirdisc.setLocation(55, 5); // define onde estará na tela
 				}
-
-				String serie;
-				if (primeiroAno.isSelected()) {
-					serie = "1º ano";
-				} else if (segundoAno.isSelected()) {
-					serie = "2º ano";
-				} else {
-					serie = "3º ano";
-				}
-
-				String turno;
-				if (manha.isSelected()) {
-					turno = "Manhã";
-				} else {
-					turno = "Tarde";
-				}
-
-				String turma;
-				if (a.isSelected()) {
-					turma = "A";
-				} else if (b.isSelected()) {
-					turma = "B";
-				} else {
-					turma = "C";
-				}
-
-				/*
-				 * JOptionPane.showMessageDialog(null, "Aluno cadastrado! Nome: " + nomeAluno +
-				 * "\nCPF: " + cpfAluno + "\nMatrícula: " + matriculaAluno + "\nSexo: " + sexo +
-				 * "\nSérie: " + serie + "\nTurno: " + turno + "\nTurma: " + turma);
-				 */
-
-				JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso!");
-
-				aln.setNome(nomeAluno);
-				aln.setCpf(cpfAluno);
-				aln.setMatricula(matriculaAluno);
-				aln.setSexo(sexo);
-				aln.setSerie(serie);
-				aln.setTurno(turno);
-				aln.setTurma(turma);
-
-				// OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
-				InserirDisc finserirdisc = new InserirDisc(aln, disc, boletim, disciplinas);
-
-				getParent().add(finserirdisc);
-				finserirdisc.setVisible(true);
-				dispose();
-
-				finserirdisc.setSize(550, 400); // define o seu tamanho
-				finserirdisc.setLocation(55, 5); // define onde estará na tela
 
 			}
 		});

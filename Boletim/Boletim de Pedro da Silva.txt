@@ -1,0 +1,60 @@
+--- Dados do aluno ---
+	Nome: Pedro da Silva
+	Sexo: Masculino
+	CPF: 098.983.992-42
+	Matrícula: 12345
+	Série: 2º ano
+	Turno: Tarde
+	Turma: C
+
+--- Boletim do aluno ---
+
+NOTAS:
+
+	Física: 
+	10.0
+	9.0
+	9.0
+	10.0
+
+	História: 
+	10.0
+	9.2
+	9.4
+	8.1
+
+	Química: 
+	9.4
+	9.3
+	9.1
+	9.1
+
+	Inglês: 
+	10.0
+	10.0
+	9.0
+	9.1
+
+	Redação: 
+	9.0
+	10.0
+	9.0
+	10.0
+
+	Filosofia: 
+	4.1
+	5.3
+	6.2
+	5.1
+
+	Sociologia: 
+	9.0
+	9.0
+	10.0
+	10.0
+
+	Programação: 
+	10.0
+	10.0
+	10.0
+	10.0

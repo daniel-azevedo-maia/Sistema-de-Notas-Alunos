@@ -34,7 +34,7 @@ public class BoletimFrame extends JInternalFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					BoletimFrame frame = new BoletimFrame(null, null, null, null);
+					BoletimFrame frame = new BoletimFrame(null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,9 +47,9 @@ public class BoletimFrame extends JInternalFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("serial")
-	public BoletimFrame(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+	public BoletimFrame(Aluno aln, Disciplina disc, Boletim boletim) {
 		setTitle("Boletim do Aluno");
-		setBounds(100, 100, 618, 352);
+		setBounds(100, 100, 618, 404);
 
 		setClosable(true);
 		setMaximizable(true);
@@ -61,23 +61,12 @@ public class BoletimFrame extends JInternalFrame {
 
 		JLabel lblNewLabel = new JLabel("Boletim de " + aln.getNome() + " - Matrícula " + aln.getMatricula());
 		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lblNewLabel.setBounds(10, 29, 582, 14);
+		lblNewLabel.setBounds(20, 28, 582, 14);
 		Boletim.add(lblNewLabel);
 
 		JSeparator separator = new JSeparator();
-		separator.setBounds(10, 66, 449, 17);
+		separator.setBounds(20, 65, 449, 17);
 		Boletim.add(separator);
-
-		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-		scrollPane.setBounds(10, 94, 591, 129);
-		Boletim.add(scrollPane);
-
-		tabela = new JTable();
-		tabela.setEnabled(false);
-		scrollPane.setViewportView(tabela);
-		tabela.setModel(new DefaultTableModel(new Object[][] {},
-				new String[] { "Disciplina", "Nota 1", "Nota 2", "Nota 3", "Nota 4", "Média", "Situação" }));
 
 		JButton gerarRelatorio = new JButton("Exportar relat\u00F3rio para o bloco de notas");
 		gerarRelatorio.addActionListener(new ActionListener() {
@@ -142,7 +131,7 @@ public class BoletimFrame extends JInternalFrame {
 
 			}
 		});
-		gerarRelatorio.setBounds(10, 288, 286, 23);
+		gerarRelatorio.setBounds(10, 289, 282, 28);
 		Boletim.add(gerarRelatorio);
 
 		JButton btnNewButton = new JButton("Voltar ao menu");
@@ -152,7 +141,7 @@ public class BoletimFrame extends JInternalFrame {
 				Boletim.setVisible(false);
 			}
 		});
-		btnNewButton.setBounds(306, 288, 153, 23);
+		btnNewButton.setBounds(139, 328, 153, 24);
 		Boletim.add(btnNewButton);
 
 		JButton btnNewButton_1 = new JButton("Sair");
@@ -161,7 +150,7 @@ public class BoletimFrame extends JInternalFrame {
 				System.exit(0);
 			}
 		});
-		btnNewButton_1.setBounds(469, 288, 123, 23);
+		btnNewButton_1.setBounds(305, 329, 123, 23);
 		Boletim.add(btnNewButton_1);
 
 		JButton btnNewButton_2 = new JButton("Registrar no banco de dados");
@@ -183,13 +172,28 @@ public class BoletimFrame extends JInternalFrame {
 
 			}
 		});
-		btnNewButton_2.setBounds(162, 234, 286, 42);
+		btnNewButton_2.setBounds(306, 289, 286, 30);
 		Boletim.add(btnNewButton_2);
-
-		DefaultTableModel modelo = (DefaultTableModel) tabela.getModel();
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(20, 65, 582, 217);
+		Boletim.add(scrollPane);
+		
+		
+		tabela = new JTable();
+		scrollPane.setViewportView(tabela);
+		tabela.setModel(new DefaultTableModel(
+			new Object[][] {
+			},
+			new String[] {
+				"Disciplina", "Nota 1", "Nota 2", "Nota 3", "Nota 4", "M\u00E9dia", "Situa\u00E7\u00E3o"
+			}
+		));
+		
+		DefaultTableModel modelo = (DefaultTableModel)tabela.getModel();
 		modelo.setNumRows(0);
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < aln.getBoletim().getDisciplinas().size(); i++) {
 
 			Object[] dados = { aln.getBoletim().getDisciplinas().get(i).getNomeDisc(),
 					aln.getBoletim().getDisciplinas().get(i).getNotas()[0],

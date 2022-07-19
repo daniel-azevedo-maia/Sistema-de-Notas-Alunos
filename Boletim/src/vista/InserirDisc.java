@@ -36,7 +36,7 @@ public class InserirDisc extends JInternalFrame {
 			public void run() {
 
 				try {
-					InserirDisc frame = new InserirDisc(null, null, null, null);
+					InserirDisc frame = new InserirDisc(null, null, null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -48,7 +48,7 @@ public class InserirDisc extends JInternalFrame {
 	/**
 	 * Create the frame.
 	 */
-	public InserirDisc(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+	public InserirDisc(Aluno aln, Disciplina disc, Boletim boletim) {
 		setTitle("Disciplinas");
 
 		setBounds(100, 100, 530, 352);
@@ -64,10 +64,10 @@ public class InserirDisc extends JInternalFrame {
 		getContentPane().add(finserirdisc, BorderLayout.CENTER);
 		finserirdisc.setLayout(null);
 
-		JLabel lblDisciplina = new JLabel("Disciplina 1");
-		lblDisciplina.setFont(new Font("Nirmala UI", Font.BOLD, 15));
-		lblDisciplina.setBounds(30, 27, 87, 43);
-		finserirdisc.add(lblDisciplina);
+		JLabel labelDisciplina = new JLabel("Cadastro de disciplina");
+		labelDisciplina.setFont(new Font("Nirmala UI", Font.BOLD, 15));
+		labelDisciplina.setBounds(30, 27, 225, 43);
+		finserirdisc.add(labelDisciplina);
 
 		JSeparator separator = new JSeparator();
 		separator.setBounds(30, 77, 449, 17);
@@ -123,55 +123,50 @@ public class InserirDisc extends JInternalFrame {
 		nota4.setBounds(123, 214, 69, 20);
 		finserirdisc.add(nota4);
 
-		JButton cadastrarDisc = new JButton("Cadastrar disciplina");
+		JButton cadastrarDisc = new JButton("Adicionar");
 
 		cadastrarDisc.addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
 
-				String disciplina = nomeDisc.getText();
-				double n1 = Double.parseDouble(nota1.getText());
-				double n2 = Double.parseDouble(nota2.getText());
-				double n3 = Double.parseDouble(nota3.getText());
-				double n4 = Double.parseDouble(nota4.getText());
+				if (nomeDisc.getText().equals("") || nota1.getText().equals("") || nota2.getText().equals("") || nota3.getText().equals("") || nota4.getText().equals("")) {
+					JOptionPane.showMessageDialog(null, "Preencha todos os campos para prosseguir!");
+				} else {
+					String disciplina = nomeDisc.getText();
+					double n1 = Double.parseDouble(nota1.getText());
+					double n2 = Double.parseDouble(nota2.getText());
+					double n3 = Double.parseDouble(nota3.getText());
+					double n4 = Double.parseDouble(nota4.getText());
 
-				double[] notas = new double[4];
-				notas[0] = n1;
-				notas[1] = n2;
-				notas[2] = n3;
-				notas[3] = n4;
+					double[] notas = new double[4];
+					notas[0] = n1;
+					notas[1] = n2;
+					notas[2] = n3;
+					notas[3] = n4;
 
-				// Eu já tenho objetos de todas as classes: Aluno, Disciplina, Boletim
+					// Eu já tenho objetos de todas as classes: Aluno, Disciplina, Boletim
 
-				Disciplina disc = new Disciplina();
-				disc.setNomeDisc(disciplina);
-				disc.setNotas(notas);
-				disc.mediaFinal();
+					Disciplina disc = new Disciplina();
 
-				disciplinas.add(disc);
-				Boletim blt = new Boletim();
-				blt.setDisciplinas(disciplinas);
-				aln.setBoletim(blt);
+					disc.setNomeDisc(disciplina);
+					disc.setNotas(notas);
+					disc.mediaFinal();
 
-				nomeDisc.setText("");
-				nota1.setText("");
-				nota2.setText("");
-				nota3.setText("");
-				nota4.setText("");
-				
-				InserirDisc2 finserirdisc = new InserirDisc2(aln, disc, boletim, disciplinas);
+					boletim.getDisciplinas().add(disc);
 
-			    getParent().add(finserirdisc);
-			    finserirdisc.setVisible(true);
-			    dispose();
-			    
-			    finserirdisc.setSize(550, 400); //define o seu tamanho
-			    finserirdisc.setLocation(55, 5); //define onde estará na tela
+					aln.setBoletim(boletim);
+
+					nomeDisc.setText("");
+					nota1.setText("");
+					nota2.setText("");
+					nota3.setText("");
+					nota4.setText("");
+				}
 
 			}
 
 		});
-		cadastrarDisc.setBounds(28, 253, 164, 43);
+		cadastrarDisc.setBounds(28, 253, 136, 43);
 		finserirdisc.add(cadastrarDisc);
 
 		JButton limpar = new JButton("Limpar");
@@ -186,7 +181,7 @@ public class InserirDisc extends JInternalFrame {
 
 			}
 		});
-		limpar.setBounds(202, 253, 97, 43);
+		limpar.setBounds(304, 253, 85, 43);
 		finserirdisc.add(limpar);
 
 		JButton sair = new JButton("Sair");
@@ -196,12 +191,30 @@ public class InserirDisc extends JInternalFrame {
 				finserirdisc.setVisible(false);
 			}
 		});
-		sair.setBounds(309, 253, 97, 43);
+		sair.setBounds(399, 253, 80, 43);
 		finserirdisc.add(sair);
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setBounds(30, 307, 449, 17);
 		finserirdisc.add(separator_1);
+
+		JButton btnNewButton = new JButton("Finalizar");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+
+				BoletimFrame fBoletimFrame = new BoletimFrame(aln, disc, boletim);
+
+				getParent().add(fBoletimFrame);
+				fBoletimFrame.setVisible(true);
+				dispose();
+
+				fBoletimFrame.setSize(627, 400); // define o seu tamanho
+				fBoletimFrame.setLocation(15, 10); // define onde estará na tela
+
+			}
+		});
+		btnNewButton.setBounds(174, 253, 120, 43);
+		finserirdisc.add(btnNewButton);
 
 	}
 }

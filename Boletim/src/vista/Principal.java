@@ -94,7 +94,7 @@ public class Principal extends JFrame {
 		listar.setForeground(new Color(0, 0, 139));
 		listar.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		listar.setBackground(UIManager.getColor("Button.focus"));
-		listar.setBounds(239, 135, 197, 27);
+		listar.setBounds(239, 145, 197, 27);
 		desktop.add(listar);
 
 		JButton sair = new JButton("Sair");
@@ -107,7 +107,7 @@ public class Principal extends JFrame {
 		sair.setForeground(new Color(0, 0, 139));
 		sair.setFont(new Font("MS UI Gothic", Font.BOLD, 16));
 		sair.setBackground(UIManager.getColor("Button.focus"));
-		sair.setBounds(239, 286, 197, 37);
+		sair.setBounds(239, 296, 197, 27);
 		desktop.add(sair);
 
 		JButton sobre = new JButton("Sobre");
@@ -121,7 +121,7 @@ public class Principal extends JFrame {
 		sobre.setForeground(new Color(0, 0, 139));
 		sobre.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
 		sobre.setBackground(UIManager.getColor("Button.focus"));
-		sobre.setBounds(239, 248, 197, 27);
+		sobre.setBounds(239, 258, 197, 27);
 		desktop.add(sobre);
 
 		JSeparator separator = new JSeparator();
@@ -150,21 +150,21 @@ public class Principal extends JFrame {
 		cadastrar.setForeground(new Color(0, 0, 139));
 		cadastrar.setBackground(UIManager.getColor("Button.focus"));
 		cadastrar.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		cadastrar.setBounds(239, 97, 197, 27);
+		cadastrar.setBounds(239, 97, 197, 37);
 		desktop.add(cadastrar);
 		
 		JButton btnAlterarDadosDo = new JButton("Atualizar dados");
 		btnAlterarDadosDo.setForeground(new Color(0, 0, 139));
 		btnAlterarDadosDo.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		btnAlterarDadosDo.setBackground(Color.BLACK);
-		btnAlterarDadosDo.setBounds(239, 173, 197, 27);
+		btnAlterarDadosDo.setBackground(UIManager.getColor("Button.focus"));
+		btnAlterarDadosDo.setBounds(239, 183, 197, 27);
 		desktop.add(btnAlterarDadosDo);
 		
 		JButton btnRemoverDados = new JButton("Remover dados");
 		btnRemoverDados.setForeground(new Color(0, 0, 139));
 		btnRemoverDados.setFont(new Font("Trebuchet MS", Font.BOLD, 16));
-		btnRemoverDados.setBackground(Color.BLACK);
-		btnRemoverDados.setBounds(239, 210, 197, 27);
+		btnRemoverDados.setBackground(UIManager.getColor("Button.focus"));
+		btnRemoverDados.setBounds(239, 220, 197, 27);
 		desktop.add(btnRemoverDados);
 	}
 }
