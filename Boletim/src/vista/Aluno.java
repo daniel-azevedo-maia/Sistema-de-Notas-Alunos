@@ -2,6 +2,7 @@ package vista;
 
 public class Aluno {
 
+	//Atributos
 	private String nome;
 	private String cpf;
 	private String matricula;
