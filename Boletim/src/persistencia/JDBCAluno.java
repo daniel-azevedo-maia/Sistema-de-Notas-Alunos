@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JOptionPane;
+
 import vista.Aluno;
 
 public class JDBCAluno {
@@ -85,6 +87,29 @@ public class JDBCAluno {
 		}
 
 		return infos;
+	}
+
+	public boolean validaAluno(String mat) {
+
+		String sql = "select Matrícula from aluno where Matrícula = '" + mat + "'";
+
+		try {
+			Statement declaração = conexão.createStatement();
+			ResultSet resposta = declaração.executeQuery(sql);
+			
+			while (resposta.next()) {
+				if (resposta.getString("Matrícula").equals(mat)) {
+					return false;
+				} 
+			}
+
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return true;
+
 	}
 
 	public void apagarTudo() {

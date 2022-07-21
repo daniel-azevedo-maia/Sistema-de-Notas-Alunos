@@ -22,6 +22,9 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import persistencia.Conexão;
+import persistencia.JDBCAluno;
+
 public class Inserir extends JInternalFrame {
 	private JTextField nome;
 	private JTextField cpf;
@@ -196,11 +199,20 @@ public class Inserir extends JInternalFrame {
 				} else if (cpf.getText().contains(".") || cpf.getText().contains("-")) {
 					JOptionPane.showMessageDialog(null, "Preencha apenas números no CPF!");
 				} else {
-				
+					String matriculaAluno = matricula.getText();
+					
+					// Conferindo no banco de dados se este aluno já existe:
+					Conexão fábrica = new Conexão();
+					JDBCAluno gerente = new JDBCAluno(fábrica.abrirConexão());
+
+					// Realizando a validação:
+					
+					if (gerente.validaAluno(matriculaAluno)) {
+						
 					String nomeAluno = nome.getText();
 					String cpfAluno = cpf.getText();
-					String matriculaAluno = matricula.getText();
-
+					
+					
 					String sexo;
 					if (masculino.isSelected()) {
 						sexo = "Masculino";
@@ -248,16 +260,24 @@ public class Inserir extends JInternalFrame {
 					aln.setSerie(serie);
 					aln.setTurno(turno);
 					aln.setTurma(turma);
+					
+					
+					
 
-					// OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
-					InserirDisc finserirdisc = new InserirDisc(aln, disc, boletim);
+						// OBS.: SÓ IRÁ ADICIONAR NA LISTA DE ALUNOS APÓS SETAR DISCIPLINAS E NOTAS!
+						InserirDisc finserirdisc = new InserirDisc(aln, disc, boletim);
 
-					getParent().add(finserirdisc);
-					finserirdisc.setVisible(true);
-					dispose();
+						getParent().add(finserirdisc);
+						finserirdisc.setVisible(true);
+						dispose();
 
-					finserirdisc.setSize(550, 400); // define o seu tamanho
-					finserirdisc.setLocation(55, 5); // define onde estará na tela
+						finserirdisc.setSize(550, 400); // define o seu tamanho
+						finserirdisc.setLocation(55, 5); // define onde estará na tela
+						
+					} else {
+						JOptionPane.showMessageDialog(null, "Já existe um aluno cadastrado com essa matrícula! Tente novamente!");
+					}
+				
 				}
 
 			}
