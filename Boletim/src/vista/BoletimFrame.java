@@ -21,8 +21,12 @@ import javax.swing.JTable;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.table.DefaultTableModel;
 
+import classesdoprojeto.Aluno;
+import classesdoprojeto.Boletim;
+import classesdoprojeto.Disciplina;
 import persistencia.Conexão;
 import persistencia.JDBCAluno;
+import javax.swing.ImageIcon;
 
 public class BoletimFrame extends JInternalFrame {
 	private JTable tabela;
@@ -48,6 +52,8 @@ public class BoletimFrame extends JInternalFrame {
 	 */
 	@SuppressWarnings("serial")
 	public BoletimFrame(Aluno aln, Disciplina disc, Boletim boletim) {
+		setFrameIcon(new ImageIcon("C:\\Users\\Daniel Azevedo\\Downloads\\iconeMenor.png"));
+		
 		setTitle("Boletim do Aluno");
 		setBounds(100, 100, 618, 404);
 

@@ -18,8 +18,14 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
+
+import classesdoprojeto.Aluno;
+import classesdoprojeto.Boletim;
+import classesdoprojeto.Disciplina;
+
 import javax.swing.JTree;
 import javax.swing.JTextPane;
+import javax.swing.ImageIcon;
 
 public class InserirDisc extends JInternalFrame {
 	private JTextField nomeDisc;
@@ -49,6 +55,8 @@ public class InserirDisc extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public InserirDisc(Aluno aln, Disciplina disc, Boletim boletim) {
+		setFrameIcon(new ImageIcon("C:\\Users\\Daniel Azevedo\\Downloads\\iconeMenor.png"));
+	
 		setTitle("Disciplinas");
 
 		setBounds(100, 100, 530, 352);
@@ -156,6 +164,8 @@ public class InserirDisc extends JInternalFrame {
 
 					aln.setBoletim(boletim);
 
+					JOptionPane.showMessageDialog(null, "Disciplina cadastrada com sucesso!");
+					
 					nomeDisc.setText("");
 					nota1.setText("");
 					nota2.setText("");

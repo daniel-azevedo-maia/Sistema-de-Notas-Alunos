@@ -22,8 +22,12 @@ import javax.swing.JSeparator;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
+import classesdoprojeto.Aluno;
+import classesdoprojeto.Boletim;
+import classesdoprojeto.Disciplina;
 import persistencia.Conexão;
 import persistencia.JDBCAluno;
+import javax.swing.ImageIcon;
 
 public class Inserir extends JInternalFrame {
 	private JTextField nome;
@@ -50,6 +54,8 @@ public class Inserir extends JInternalFrame {
 	 * Create the frame.
 	 */
 	public Inserir(Aluno aln, Disciplina disc, Boletim boletim, List<Disciplina> disciplinas) {
+		setFrameIcon(new ImageIcon("C:\\Users\\Daniel Azevedo\\Downloads\\iconeMenor.png"));
+
 		setTitle("Dados Pessoais e Escolares");
 		setBounds(100, 100, 561, 371);
 

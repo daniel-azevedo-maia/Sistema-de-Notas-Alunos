@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
-import vista.Aluno;
+import classesdoprojeto.Aluno;
 
 public class JDBCAluno {
 

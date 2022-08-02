@@ -1,4 +1,4 @@
-package vista;
+package classesdoprojeto;
 
 public class Aluno {
 

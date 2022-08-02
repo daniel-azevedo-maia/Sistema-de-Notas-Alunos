@@ -22,6 +22,12 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import classesdoprojeto.Aluno;
+import classesdoprojeto.Boletim;
+import classesdoprojeto.Disciplina;
+
+import java.awt.Toolkit;
+
 public class Principal extends JFrame {
 
 	private JPanel contentPane;
@@ -49,6 +55,7 @@ public class Principal extends JFrame {
 	 * Create the frame.
 	 */
 	public Principal() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Daniel Azevedo\\Downloads\\cadastroAluno.png"));
 		setTitle("Cadastro de Alunos - Por: Daniel Azevedo");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 685, 465);
