@@ -2,7 +2,7 @@ package classesdoprojeto;
 
 public class Aluno {
 
-	//Atributos
+	// Atributos:
 	private String nome;
 	private String cpf;
 	private String matricula;
@@ -12,6 +12,7 @@ public class Aluno {
 	private String turma;
 	private Boletim boletim;
 
+	// Métodos:
 	public String getNome() {
 		return nome;
 	}
